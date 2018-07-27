@@ -9,10 +9,13 @@
 <body>
 <form action="ManagementServlet" method="post">
 <div align="center">
-ユーザー名:<input type="text" name="userName"><br>
-パスワード:<input type="password" name="password"><br>
-<input type="submit" value="ログイン"><br>
-<a href="RegistUser.jsp">新規登録</a>
+<table>
+<tr><td>ユーザー名:<input type="text" name="userName"><br></td></tr>
+<tr><td>パスワード:<input type="password" name="password"><br></td></tr>
+<input type="hidden" name="command" value="CheckUser">
+<tr><td align="right"><input type="submit" value="ログイン"><br></td></tr>
+<tr><td align="right"><a href="RegistUser.jsp">新規登録</a></td></tr>
+</table>
 </div>
 </form>
 </body>
