@@ -9,14 +9,16 @@
 <body>
 <div align="center">
 <form action="ManagementServlet">
-ユーザー名:
-<input type="text" name="userName"><br>
-現在の残高:
-<input type="text" name="initBalance"><br>
-パスワード(半角英数字8文字以上):
-<input type="password" name="password"><br>
-パスワード(確認)
-<input type="password" name="cofirmPassword"><br>
+<table>
+<tr><td>ユーザー名*:</td>
+<td><input type="text" name="userName"></td></tr>
+<tr><td>現在の残高:</td>
+<td><input type="text" name="initBalance"></td></tr>
+<tr><td>パスワード(半角英数字8文字以上)*:</td>
+<td><input type="password" name="password"></td></tr>
+<tr><td>パスワード(確認)*:</td>
+<td><input type="password" name="confirmPassword"></td></tr>
+</table>
 <input type="submit" value="新規登録">
 </form>
 </div>

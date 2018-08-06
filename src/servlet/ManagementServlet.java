@@ -38,7 +38,7 @@ public class ManagementServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		String commandName = request.getParameter("command");
-		String nextPage = "error.jsp";
+		String nextPage = null;
 		switch (commandName) {
 		case "CheckUser":
 			nextPage = new CheckUserCommand().execute(request);
