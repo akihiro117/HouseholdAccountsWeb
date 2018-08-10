@@ -3,12 +3,22 @@ package entity;
 import java.util.Calendar;
 
 public class Member {
-	private String id;
+	private String id;					//DBで自動採番される
 	private String name;
 	private String password;
 	private Calendar registrationDate;
 	private String email;
 	private int balance;
+
+	//入力フォームからデータを取得した際に使用する
+	public Member(String name, String password, Calendar registrationDate, String email, int balance) {
+		super();
+		this.name = name;
+		this.password = password;
+		this.registrationDate = registrationDate;
+		this.email = email;
+		this.balance = balance;
+	}
 
 	public Member(String id, String name, String password, Calendar registrationDate) {
 		super();

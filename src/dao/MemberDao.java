@@ -7,10 +7,10 @@ import java.sql.SQLException;
 import entity.Member;
 import utility.Conversion;
 
-public class MemberDAO {
+public class MemberDao {
 	private Connection con;
 
-	public MemberDAO(Connection con) {
+	public MemberDao(Connection con) {
 		super();
 		this.con = con;
 	}
