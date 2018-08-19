@@ -3,7 +3,7 @@ package entity;
 import java.util.Calendar;
 
 public class Member {
-	private String id;					//DBで自動採番される
+	private String id; //DBで自動採番される
 	private String name;
 	private String password;
 	private Calendar registrationDate;

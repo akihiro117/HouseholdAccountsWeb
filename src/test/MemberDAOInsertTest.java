@@ -16,7 +16,7 @@ public class MemberDAOInsertTest {
 			con = ConnectionOperator.getConnection();
 			con.setAutoCommit(false);
 			MemberDao memberDao = new MemberDao(con);
-			Member member = new Member("2", "aaa2", "bbb2", Calendar.getInstance(),
+			Member member = new Member("aaa4", "bbb3", Calendar.getInstance(),
 					"xx--@gmail.com", 10000);
 			memberDao.insert(member);
 			con.commit();

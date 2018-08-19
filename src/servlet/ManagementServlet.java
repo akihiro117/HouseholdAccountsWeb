@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import command.CheckMemberForm;
 import command.CheckUserCommand;
 import command.RegistMember;
 
@@ -29,7 +30,8 @@ public class ManagementServlet extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+	protected void doGet(HttpServletRequest request,
+			HttpServletResponse response)
 			throws ServletException, IOException {
 		doPost(request, response);
 	}
@@ -37,14 +39,20 @@ public class ManagementServlet extends HttpServlet {
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		String commandName = request.getParameter("command");
 		String nextPage = "ErrorPage.jsp";
 		switch (commandName) {
 		case "CheckUser":
 			nextPage = new CheckUserCommand().execute(request);
+			break;
+		case "MemberRegistForm":
+			nextPage = "MemberRegistForm.jsp";
+			break;
+		case "MemberRegistConfirm":
+			nextPage = new CheckMemberForm().execute(request);
 			break;
 		case "RegistMember":
 			nextPage = new RegistMember().execute(request);

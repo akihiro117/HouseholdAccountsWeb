@@ -20,14 +20,13 @@ public class MemberDao {
 		try {
 
 			pst = con.prepareStatement("insert into members "
-					+ "(id, name, password, email, balance, registration_date)"
-					+ " values(?, ?, ?, ?, ?, ?)");
-			pst.setString(1, member.getId());
-			pst.setString(2, member.getName());
-			pst.setString(3, member.getPassword());
-			pst.setString(4, member.getEmail());
-			pst.setInt(5, member.getBalance());
-			pst.setDate(6, Conversion.convertCalendarToDate(member.getRegistrationDate()));
+					+ "(name, password, email, balance, registration_date)"
+					+ " values(?, ?, ?, ?, ?)");
+			pst.setString(1, member.getName());
+			pst.setString(2, member.getPassword());
+			pst.setString(3, member.getEmail());
+			pst.setInt(4, member.getBalance());
+			pst.setDate(5, Conversion.convertCalendarToDate(member.getRegistrationDate()));
 
 			pst.executeUpdate();
 
