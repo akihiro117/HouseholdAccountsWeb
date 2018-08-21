@@ -1,3 +1,7 @@
+//Category.java
+//Created by Akihiro Yamada on 2018/07/30.
+//Copyright (c) 2018. All Rights Reserved.
+
 package entity;
 
 //収支の分類
@@ -10,15 +14,19 @@ public class Category {
 		this.id = id;
 		this.name = name;
 	}
+
 	public String getId() {
 		return id;
 	}
+
 	public void setId(String id) {
 		this.id = id;
 	}
+
 	public String getName() {
 		return name;
 	}
+
 	public void setName(String name) {
 		this.name = name;
 	}

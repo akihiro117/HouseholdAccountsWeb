@@ -1,3 +1,7 @@
+//ManagementServlet.java
+//Created by Akihiro Yamada on 2018/07/23.
+//Copyright (c) 2018. All Rights Reserved.
+
 package servlet;
 
 import java.io.IOException;
@@ -9,9 +13,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import command.CheckMemberForm;
+import command.CheckMemberFormCommand;
 import command.CheckUserCommand;
-import command.RegistMember;
+import command.RegistMemberCommand;
 
 /**
  * Servlet implementation class ManagementServlet
@@ -52,10 +56,10 @@ public class ManagementServlet extends HttpServlet {
 			nextPage = "MemberRegistForm.jsp";
 			break;
 		case "MemberRegistConfirm":
-			nextPage = new CheckMemberForm().execute(request);
+			nextPage = new CheckMemberFormCommand().execute(request);
 			break;
 		case "RegistMember":
-			nextPage = new RegistMember().execute(request);
+			nextPage = new RegistMemberCommand().execute(request);
 			break;
 		default:
 			request.setAttribute("errMsg", "指定されたページは存在しません");

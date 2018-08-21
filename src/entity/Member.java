@@ -1,7 +1,15 @@
+//Member.java
+//Created by Akihiro Yamada on 2018/07/30.
+//Copyright (c) 2018. All Rights Reserved.
+
 package entity;
 
 import java.util.Calendar;
 
+/**
+ * 会員情報を保持するクラス
+ *
+ */
 public class Member {
 	private String id; //DBで自動採番される
 	private String name;
@@ -11,7 +19,8 @@ public class Member {
 	private int balance;
 
 	//入力フォームからデータを取得した際に使用する
-	public Member(String name, String password, Calendar registrationDate, String email, int balance) {
+	public Member(String name, String password, Calendar registrationDate,
+			String email, int balance) {
 		super();
 		this.name = name;
 		this.password = password;
@@ -20,15 +29,9 @@ public class Member {
 		this.balance = balance;
 	}
 
-	public Member(String id, String name, String password, Calendar registrationDate) {
-		super();
-		this.id = id;
-		this.name = name;
-		this.password = password;
-		this.registrationDate = registrationDate;
-	}
-
-	public Member(String id, String name, String password, Calendar registrationDate,
+	//membersテーブルから会員情報を取得する際に使用する
+	public Member(String id, String name, String password,
+			Calendar registrationDate,
 			String email, int balance) {
 		super();
 		this.id = id;
@@ -89,6 +92,7 @@ public class Member {
 
 	@Override
 	public String toString() {
-		return "Member [name=" + name + ", password=" + password + ", email=" + email + "]";
+		return "Member [name=" + name + ", password=" + password + ", email="
+				+ email + "]";
 	}
 }

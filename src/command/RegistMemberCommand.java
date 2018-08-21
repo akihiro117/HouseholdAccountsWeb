@@ -1,3 +1,7 @@
+//RegistMemberCommand.java
+//Created by Akihiro Yamada on 2018/08/08.
+//Copyright (c) 2018. All Rights Reserved.
+
 package command;
 
 import java.sql.Connection;
@@ -11,12 +15,12 @@ import dao.MemberDao;
 import entity.Member;
 import utility.ConnectionOperator;
 
-public class RegistMember implements Command {
+public class RegistMemberCommand implements Command {
 	/**
 	 * 会員情報をDBに登録する
 	 * @param request requestオブジェクト
 	 * @return
-	 * 成功した場合は、遷移先の画面名を返し、
+	 * 成功した場合は、遷移先のjsp名を返し、
 	 * 失敗した場合はnullを返す
 	 */
 	@Override
@@ -29,6 +33,7 @@ public class RegistMember implements Command {
 
 			HttpSession session = request.getSession();
 			Member member = (Member) session.getAttribute("member");
+			//システム日付を登録日とする
 			Calendar registrationDate = Calendar.getInstance();
 			member.setRegistrationDate(registrationDate);
 
@@ -39,8 +44,10 @@ public class RegistMember implements Command {
 			session.invalidate();
 
 			con.commit();
+			//会員登録結果の画面のjsp
 			return "MemberRegistResult.jsp";
 		} catch (SQLException e1) {
+			//ErrorPage.jspに表示するエラー文
 			request.setAttribute("errMsg", "SQLの処理中にエラーが発生しました");
 			try {
 				if (con != null) {

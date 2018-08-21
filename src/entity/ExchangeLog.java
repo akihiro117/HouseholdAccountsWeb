@@ -1,3 +1,7 @@
+//ExchangeLog.java
+//Created by Akihiro Yamada on 2018/07/30.
+//Copyright (c) 2018. All Rights Reserved.
+
 package entity;
 
 import java.util.Calendar;
@@ -10,7 +14,8 @@ public class ExchangeLog {
 	private boolean isIncome;//収入->true, 支出->false
 	private Calendar exchangeDate;
 
-	public ExchangeLog(String exchangeId, String userName, int amount, boolean isIncome, Calendar exchangeDate) {
+	public ExchangeLog(String exchangeId, String userName, int amount,
+			boolean isIncome, Calendar exchangeDate) {
 		super();
 		this.exchangeId = exchangeId;
 		this.userName = userName;

@@ -1,3 +1,9 @@
+<!--
+MemberRegistForm.jsp
+Created by Akihiro Yamada on 2018/07/25.
+Copyright (c) 2018. All Rights Reserved.
+ -->
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
