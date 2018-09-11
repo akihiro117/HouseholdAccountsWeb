@@ -6,7 +6,9 @@ package dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Calendar;
 
 import entity.Member;
 import utility.Conversion;
@@ -51,6 +53,55 @@ public class MemberDao {
 				pst.close();
 			}
 		}
+	}
 
+	/**
+	 * 引数で渡されたemailとパスワードの組をもつ会員情報をmembersテーブルから
+	 * 取得し、Memberオブジェクトとして返す。
+	 * @param emailParam ユーザがログインフォームに入力したメールアドレス
+	 * @param passwordParam ユーザがログインフォームに入力したパスワード
+	 * @return 引数で渡されたemailとパスワードの組がmembersテーブルに存在する場合は、
+	 * その組に対応する会員情報をもつMemberオブジェクトを返す。
+	 * 引数で渡されたemailとパスワードの組がmembersテーブルに存在しない場合は、
+	 * nullを返す。
+	 * @throws SQLException
+	 */
+	public Member selectMemberByParam(String emailParam, String passwordParam)
+			throws SQLException {
+		PreparedStatement pst = null;
+		try {
+			//変更し終わったらgit commitする
+			pst = con.prepareStatement("select id, name, password, "
+					+ "email, balance, registration_date from members "
+					+ "where email = ? and password = ?");
+			pst.setString(1, emailParam);
+			pst.setString(2, passwordParam);
+			ResultSet rs = pst.executeQuery();
+
+			if (rs.next()) {
+				String name = rs.getString("name");
+				String password = rs.getString("password");
+				Calendar registrationDate = Conversion.convertDateToCalendar(
+						rs.getDate("registration_date"));
+				String email = rs.getString("email");
+				int balance = rs.getInt("balance");
+				Member member = new Member(name, password, registrationDate,
+						email, balance);
+				return member;
+			} else {
+				//引数で渡されたemailとpasswordを持つ行がない場合は
+				//nullを返す
+				return null;
+			}
+
+		} finally {
+			try {
+				if (pst != null) {
+					pst.close();
+				}
+			} catch (SQLException e) {
+
+			}
+		}
 	}
 }

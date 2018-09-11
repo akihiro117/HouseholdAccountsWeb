@@ -4,6 +4,7 @@
 
 package entity;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 
 /**
@@ -17,6 +18,7 @@ public class Member {
 	private Calendar registrationDate;
 	private String email;
 	private int balance;
+	private ArrayList<ExchangeLog> exchangeLogsList;
 
 	//入力フォームからデータを取得した際に使用する
 	public Member(String name, String password, Calendar registrationDate,
@@ -88,6 +90,14 @@ public class Member {
 
 	public void setBalance(int balance) {
 		this.balance = balance;
+	}
+
+	public ArrayList<ExchangeLog> getExchangeLogsList() {
+		return exchangeLogsList;
+	}
+
+	public void setExchangeLogsList(ArrayList<ExchangeLog> exchangeLogsList) {
+		this.exchangeLogsList = exchangeLogsList;
 	}
 
 	@Override

@@ -24,4 +24,10 @@ public class Conversion {
 		//Date(long date)でjava.sql.Dateのオブジェクトを構築
 		return new Date(date.getTime().getTime());
 	}
+
+	public static Calendar convertDateToCalendar(Date date) {
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTime(date);
+		return calendar;
+	}
 }

@@ -15,9 +15,10 @@ Copyright (c) 2018. All Rights Reserved.
 <body>
 
 <div align="center">
+${errMsg }<br>
 <form action="ManagementServlet" method="post">
 <table>
-<tr><td>ユーザー名:<input type="text" name="userName"><br></td></tr>
+<tr><td>メールアドレス:<input type="text" name="email"><br></td></tr>
 <tr><td>パスワード:<input type="password" name="password"><br></td></tr>
 <tr><td align="right"><input type="hidden" name="command" value="CheckUser">
 <input type="submit" value="ログイン"><br></td></tr>

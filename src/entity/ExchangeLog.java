@@ -8,36 +8,15 @@ import java.util.Calendar;
 
 //収支の履歴
 public class ExchangeLog {
-	private String exchangeId;
-	private String userName;
-	private int amount;
+	private int amount;//支出したまたは得た金額
 	private boolean isIncome;//収入->true, 支出->false
-	private Calendar exchangeDate;
+	private Calendar exchangeDate;//収入または支出の日付
 
-	public ExchangeLog(String exchangeId, String userName, int amount,
-			boolean isIncome, Calendar exchangeDate) {
+	public ExchangeLog(int amount, boolean isIncome, Calendar exchangeDate) {
 		super();
-		this.exchangeId = exchangeId;
-		this.userName = userName;
 		this.amount = amount;
 		this.isIncome = isIncome;
 		this.exchangeDate = exchangeDate;
-	}
-
-	public String getExchangeId() {
-		return exchangeId;
-	}
-
-	public void setExchangeId(String exchangeId) {
-		this.exchangeId = exchangeId;
-	}
-
-	public String getUserName() {
-		return userName;
-	}
-
-	public void setUserName(String userName) {
-		this.userName = userName;
 	}
 
 	public int getAmount() {
