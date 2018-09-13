@@ -7,11 +7,14 @@ package command;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import dao.LogDao;
 import dao.MemberDao;
+import entity.ExchangeLog;
 import entity.Member;
 import utility.ConnectionOperator;
 
@@ -49,6 +52,12 @@ public class CheckUserCommand implements Command {
 						"入力したメールアドレスまたはパスワードが間違っています");
 				nextPage = "LoginForm.jsp";
 			} else {
+				//会員の収支の履歴
+				LogDao logDao = new LogDao(con);
+				List<ExchangeLog> log = logDao
+						.selectLogByMember(member.getId());
+				request.setAttribute("log", log);
+
 				//ログインしている間は、会員情報を使うため、
 				//sessionにMemberオブジェクトを追加
 				HttpSession session = request.getSession();

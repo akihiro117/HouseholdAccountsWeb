@@ -6,6 +6,7 @@ Copyright (c) 2018. All Rights Reserved.
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,7 +17,16 @@ Copyright (c) 2018. All Rights Reserved.
 残金総額:${member.balance }<br>
 <table border="1" width="80%">
 <tr><th>日付</th><th>内容</th><th>支出</th><th>収入</th></tr>
-<tr><td></td><td>ダミー</td><td>1000</td><td></td></tr>
+<c:forEach var="l" items="${log }">
+<c:choose>
+<c:when test="${l.isIncome == false }">
+<tr><td></td><td>ダミー</td><td><c:out value="${l.amount }"/></td><td></td></tr>
+</c:when>
+<c:otherwise>
+<tr><td></td><td>ダミー</td><td></td><td><c:out value="${l.amount }"/></td></tr>
+</c:otherwise>
+</c:choose>
+</c:forEach>
 </table>
 
 
