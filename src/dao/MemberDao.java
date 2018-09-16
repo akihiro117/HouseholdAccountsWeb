@@ -79,13 +79,14 @@ public class MemberDao {
 			ResultSet rs = pst.executeQuery();
 
 			if (rs.next()) {
+				int id = rs.getInt("id");
 				String name = rs.getString("name");
 				String password = rs.getString("password");
 				Calendar registrationDate = Conversion.convertDateToCalendar(
 						rs.getDate("registration_date"));
 				String email = rs.getString("email");
 				int balance = rs.getInt("balance");
-				Member member = new Member(name, password, registrationDate,
+				Member member = new Member(id, name, password, registrationDate,
 						email, balance);
 				return member;
 			} else {

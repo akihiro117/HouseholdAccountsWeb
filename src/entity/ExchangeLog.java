@@ -55,4 +55,15 @@ public class ExchangeLog {
 	public void setExchangeDate(Calendar exchangeDate) {
 		this.exchangeDate = exchangeDate;
 	}
+
+	@Override
+	public String toString() {
+		return "ExchangeLog [detail=" + detail + ", amount=" + amount
+				+ ", isIncome=" + isIncome + ", exchangeDate="
+				+ exchangeDate.get(Calendar.YEAR) +
+				"/" + (exchangeDate.get(Calendar.MONTH) + 1) + "/"
+				+ exchangeDate.get(Calendar.DAY_OF_MONTH)
+				+ "]";
+	}
+
 }

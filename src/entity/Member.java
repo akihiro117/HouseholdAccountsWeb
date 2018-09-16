@@ -12,7 +12,7 @@ import java.util.Calendar;
  *
  */
 public class Member {
-	private String id; //DBで自動採番される
+	private int id; //DBで自動採番される
 	private String name;
 	private String password;
 	private Calendar registrationDate;
@@ -20,7 +20,7 @@ public class Member {
 	private int balance;
 	private ArrayList<ExchangeLog> exchangeLogsList;
 
-	//入力フォームからデータを取得した際に使用する
+	//会員登録をするときに使う
 	public Member(String name, String password, Calendar registrationDate,
 			String email, int balance) {
 		super();
@@ -32,7 +32,7 @@ public class Member {
 	}
 
 	//membersテーブルから会員情報を取得する際に使用する
-	public Member(String id, String name, String password,
+	public Member(int id, String name, String password,
 			Calendar registrationDate,
 			String email, int balance) {
 		super();
@@ -44,11 +44,11 @@ public class Member {
 		this.balance = balance;
 	}
 
-	public String getId() {
+	public int getId() {
 		return id;
 	}
 
-	public void setId(String id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 

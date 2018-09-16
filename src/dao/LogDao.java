@@ -1,4 +1,4 @@
-//MemberDao.java
+//LogDao.java
 //Created by Akihiro Yamada on 2018/09/13.
 //Copyright (c) 2018. All Rights Reserved.
 
@@ -21,24 +21,24 @@ public class LogDao {
 		this.con = con;
 	}
 
-	public List<ExchangeLog> selectLogByMember(String memberId)
+	public List<ExchangeLog> selectLogByMember(int memberId)
 			throws SQLException {
 		PreparedStatement pst = null;
 		try {
 			pst = con.prepareStatement("select amount, exchange_date, "
-					+ "isIncome where member_id=?");
-			pst.setString(1, memberId);
+					+ "isIncome, detail from exchange_log where member_id=?");
+			pst.setInt(1, memberId);
 
 			ResultSet rs = pst.executeQuery();
 
 			List<ExchangeLog> exchangeLog = new ArrayList<ExchangeLog>();
 			while (rs.next()) {
 				ExchangeLog log = new ExchangeLog();
-				log.setDetail(rs.getString("detail"));
 				log.setAmount(rs.getInt("amount"));
 				log.setExchangeDate(Conversion
 						.convertDateToCalendar(rs.getDate("exchange_date")));
 				log.setIsIncome(rs.getBoolean("isIncome"));
+				log.setDetail(rs.getString("detail"));
 
 				exchangeLog.add(log);
 			}
