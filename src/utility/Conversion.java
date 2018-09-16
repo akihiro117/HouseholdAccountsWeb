@@ -5,6 +5,7 @@
 package utility;
 
 import java.sql.Date;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 /**
@@ -29,5 +30,9 @@ public class Conversion {
 		Calendar calendar = Calendar.getInstance();
 		calendar.setTime(date);
 		return calendar;
+	}
+
+	public static String convertCalendarToString(Calendar date) {
+		return new SimpleDateFormat("yyyy/MM/dd").format(date.getTime());
 	}
 }

@@ -6,12 +6,15 @@ package entity;
 
 import java.util.Calendar;
 
+import utility.Conversion;
+
 //収支の履歴
 public class ExchangeLog {
 	private String detail;//取引の内容
 	private int amount;//支出したまたは得た金額
 	private boolean isIncome;//収入->true, 支出->false
 	private Calendar exchangeDate;//収入または支出の日付
+	private String exchangeDateStr;
 
 	public ExchangeLog() {
 
@@ -40,7 +43,7 @@ public class ExchangeLog {
 		this.amount = amount;
 	}
 
-	public boolean isIncome() {
+	public boolean getIsIncome() {
 		return isIncome;
 	}
 
@@ -54,6 +57,15 @@ public class ExchangeLog {
 
 	public void setExchangeDate(Calendar exchangeDate) {
 		this.exchangeDate = exchangeDate;
+		this.exchangeDateStr = Conversion.convertCalendarToString(exchangeDate);
+	}
+
+	public String getExchangeDateStr() {
+		return exchangeDateStr;
+	}
+
+	public void setExchangeDateStr(String exchangeDateStr) {
+		this.exchangeDateStr = exchangeDateStr;
 	}
 
 	@Override

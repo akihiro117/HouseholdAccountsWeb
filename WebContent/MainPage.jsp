@@ -20,10 +20,10 @@ Copyright (c) 2018. All Rights Reserved.
 <c:forEach var="l" items="${log }">
 <c:choose>
 <c:when test="${l.isIncome == false }">
-<tr><td></td><td>ダミー</td><td><c:out value="${l.amount }"/></td><td></td></tr>
+<tr><td><c:out value="${l.exchangeDateStr }"/></td><td><c:out value="${l.detail }"/></td><td><c:out value="${l.amount }"/></td><td></td></tr>
 </c:when>
 <c:otherwise>
-<tr><td></td><td>ダミー</td><td></td><td><c:out value="${l.amount }"/></td></tr>
+<tr><td><c:out value="${l.exchangeDateStr }"/></td><td><c:out value="${l.detail }"/></td><td></td><td><c:out value="${l.amount }"/></td></tr>
 </c:otherwise>
 </c:choose>
 </c:forEach>
