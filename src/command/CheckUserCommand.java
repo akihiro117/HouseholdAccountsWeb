@@ -20,14 +20,16 @@ import utility.ConnectionOperator;
 
 /**
  * ログインフォームに入力されたメールアドレスと
- * パスワードの組の正誤をチェックする
+ * パスワードの組の正誤をチェックし、
+ * 会員情報をDBから取得するためのクラス。
  *
  */
 public class CheckUserCommand implements Command {
 	/**
 	 * ログインフォームに入力されたメールアドレスと
 	 * パスワードの組の正誤をチェックし、
-	 * 遷移先のjsp名を返す
+	 * 正しい場合は、会員情報、収支の履歴をDBから取得して
+	 * sessionに登録した後、遷移先のjsp名を返す
 	 * @param request リクエストオブジェクト
 	 * @return 遷移先のjsp名
 	 */
@@ -52,15 +54,16 @@ public class CheckUserCommand implements Command {
 						"入力したメールアドレスまたはパスワードが間違っています");
 				nextPage = "LoginForm.jsp";
 			} else {
+				HttpSession session = request.getSession();
+
 				//会員の収支の履歴
 				LogDao logDao = new LogDao(con);
 				List<ExchangeLog> log = logDao
 						.selectLogByMember(member.getId());
-				request.setAttribute("log", log);
+				session.setAttribute("log", log);
 
 				//ログインしている間は、会員情報を使うため、
 				//sessionにMemberオブジェクトを追加
-				HttpSession session = request.getSession();
 				session.setAttribute("member", member);
 				nextPage = "MainPage.jsp";
 			}

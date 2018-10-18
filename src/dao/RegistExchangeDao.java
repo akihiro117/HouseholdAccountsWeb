@@ -13,6 +13,9 @@ import java.util.Calendar;
 import entity.InputData;
 import utility.Conversion;
 
+/**
+ * exchange_logテーブルを操作するためのDaoクラス。
+ */
 public class RegistExchangeDao {
 
 	private Connection con;
@@ -21,6 +24,11 @@ public class RegistExchangeDao {
 		this.con = con;
 	}
 
+	/**
+	 * 収支履歴をexchange_logテーブルに登録する。
+	 * @param inputData 入力された収支情報。
+	 * @return テーブルに挿入した行数。
+	 */
 	public int insertExchange(InputData inputData) throws SQLException {
 		PreparedStatement pst = null;
 		try {
@@ -28,6 +36,7 @@ public class RegistExchangeDao {
 					"insert into exchange_log(amount, exchange_date, isIncome,"
 							+ "member_id, detail) values(?, ?, ?, ?, ?)");
 
+			//システム日時を収支の日時とする。
 			Calendar currentDate = Calendar.getInstance();
 
 			pst.setInt(1, inputData.getPrice());
@@ -36,9 +45,9 @@ public class RegistExchangeDao {
 			pst.setInt(4, inputData.getLoginUserId());
 			pst.setString(5, inputData.getDetail());
 
-			int updateRows = pst.executeUpdate();
+			int insertedRows = pst.executeUpdate();
 
-			return updateRows;
+			return insertedRows;
 
 		} finally {
 			if (pst != null) {
@@ -47,6 +56,13 @@ public class RegistExchangeDao {
 		}
 	}
 
+	/**
+	 * membersテーブルの残高を更新する。
+	 * @param id 会員ID。
+	 * @param amount 金額。
+	 * @param isIncome 収入か支出か。
+	 * @return 更新した行数。
+	 */
 	public int updateBalnce(int id, int amount, boolean isIncome)
 			throws SQLException {
 		PreparedStatement pst1 = null;
@@ -56,6 +72,7 @@ public class RegistExchangeDao {
 					"select balance from members where id = ?");
 			pst1.setInt(1, id);
 
+			//membersテーブルの残高を取得。
 			ResultSet rs = pst1.executeQuery();
 
 			int balance = 0;
@@ -74,6 +91,7 @@ public class RegistExchangeDao {
 			pst2.setInt(1, balance);
 			pst2.setInt(2, id);
 
+			//membersテーブルの残高を更新。
 			int updatedRows = pst2.executeUpdate();
 
 			return updatedRows;

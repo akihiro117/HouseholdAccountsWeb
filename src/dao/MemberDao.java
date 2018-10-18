@@ -14,7 +14,7 @@ import entity.Member;
 import utility.Conversion;
 
 /**
- * membersテーブルへの操作を行うためのクラス
+ * membersテーブルへの操作を行うためのDaoクラス
  *
  */
 public class MemberDao {
@@ -30,7 +30,6 @@ public class MemberDao {
 	 * 会員情報をmembersテーブルに挿入する
 	 * @param member Member型のオブジェクトでフォームに入力された
 	 * 会員情報が入っている
-	 * @throws SQLException
 	 */
 	public void insert(Member member) throws SQLException {
 		PreparedStatement pst = null;

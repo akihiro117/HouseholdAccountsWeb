@@ -50,23 +50,38 @@ public class ManagementServlet extends HttpServlet {
 		String commandName = request.getParameter("command");
 
 		String nextPage = "ErrorPage.jsp";
+
+		if (commandName == null) {
+			commandName = "";
+		}
+
 		switch (commandName) {
+		case "":
+			nextPage = "LoginForm.jsp";
+			break;
 		case "CheckUser":
+			//入力されたメールアドレスとパスワードをチェック。
+			//会員情報を取得。
 			nextPage = new CheckUserCommand().execute(request);
 			break;
 		case "MemberRegistForm":
+			//新規会員登録フォーム。
 			nextPage = "MemberRegistForm.jsp";
 			break;
 		case "MemberRegistConfirm":
+			//会員情報の入力チェック。
 			nextPage = new CheckMemberFormCommand().execute(request);
 			break;
 		case "RegistMember":
+			//会員情報をDBに登録。
 			nextPage = new RegistMemberCommand().execute(request);
 			break;
 		case "RegistExchange":
+			//収支情報をDBに登録。
 			nextPage = new RegistExchangeCommand().execute(request);
 			break;
 		default:
+			//エラーページ。
 			request.setAttribute("errMsg", "指定されたページは存在しません");
 			nextPage = "ErrorPage.jsp";
 		}

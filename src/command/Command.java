@@ -9,7 +9,7 @@ import java.io.IOException;
 import javax.servlet.http.HttpServletRequest;
 
 /**
- * Commandを提供するクラスが実装するインターフェース
+ * Commandを提供するクラスに実装されるインターフェース
  *
  */
 public interface Command {

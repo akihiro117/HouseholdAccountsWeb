@@ -14,6 +14,10 @@ import java.util.List;
 import entity.ExchangeLog;
 import utility.Conversion;
 
+/**
+ * 収支の履歴をDBから取得するためのDaoクラス。
+ *
+ */
 public class LogDao {
 	private Connection con;
 
@@ -21,6 +25,11 @@ public class LogDao {
 		this.con = con;
 	}
 
+	/**
+	 * 該当する会員IDの収支の履歴を取得する。
+	 * @param memberId 会員ID。
+	 * @return 収支の履歴
+	 */
 	public List<ExchangeLog> selectLogByMember(int memberId)
 			throws SQLException {
 		PreparedStatement pst = null;

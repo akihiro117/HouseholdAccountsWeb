@@ -16,7 +16,10 @@ Copyright (c) 2018. All Rights Reserved.
 <body>
 残金総額:${member.balance }<br>
 
-<form>
+<form method="post">
+    <c:forEach var="errMsg" items="${errMsgs }">
+        <c:out value="${errMsg }"></c:out><br>
+    </c:forEach>
 	<table width="30%" align="left">
 	    <tr>
 	        <th>
@@ -52,7 +55,7 @@ Copyright (c) 2018. All Rights Reserved.
 	       </td>
 	       <td>
 	           <input type="hidden" name="command" value="RegistExchange">
-                <input type="submit" value="収支登録"><br>
+               <input type="submit" value="収支登録"><br>
 	       </td>
 	    </tr>
 	</table>

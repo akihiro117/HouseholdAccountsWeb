@@ -13,6 +13,10 @@ import javax.servlet.http.HttpSession;
 import entity.Member;
 import utility.CheckInputtedData;
 
+/**
+ * 新規会員登録フォームに入力された会員情報をチェックする。
+ *
+ */
 public class CheckMemberFormCommand implements Command {
 	/**
 	 * フォームに入力された会員情報の形式をチェックし、
@@ -47,7 +51,8 @@ public class CheckMemberFormCommand implements Command {
 			//前回入力したデータが表示されないようにするために
 			//sessionではなくrequestのsetAttribute()を使う
 			request.setAttribute("name", memberName);
-			//もし入力された残高が文字列の場合、memberオブジェクトに
+
+			//入力された残高が文字列の場合、memberオブジェクトに
 			//入れることができないため、memberオブジェクトを
 			//attributeにセットせずに、パラメータ毎にセットする
 			request.setAttribute("balance", balanceStr);

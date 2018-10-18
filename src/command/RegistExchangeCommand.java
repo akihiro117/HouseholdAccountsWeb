@@ -7,6 +7,7 @@ package command;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -22,22 +23,53 @@ import utility.ConnectionOperator;
 
 /**
  *
- * 収支履歴を登録するコマンド。
+ * 収支情報を登録するためのコマンドクラス。
  *
  */
 public class RegistExchangeCommand implements Command {
 
+	/**
+	 * 収支情報を登録。
+	 * @param request リクエストオブジェクト。
+	 * @return 遷移先のjsp名。
+	 */
 	@Override
 	public String execute(HttpServletRequest request) throws IOException {
 
 		//リクエストパラメータのエンコーディングを設定
 		request.setCharacterEncoding("utf-8");
-		//金額。
-		int price = Integer.parseInt(request.getParameter("price"));
-		//収入か支出か
-		String isIncome = request.getParameter("isIncome");
+
+		//エラーメッセージのリスト。
+		List<String> errMsgs = new ArrayList<String>();
+
+		boolean hasErrs = false;
 		//収支の内容
 		String detail = request.getParameter("detail");
+		if (detail == null || detail.equals("")) {
+			errMsgs.add("収支の内容を入力してください。");
+			hasErrs = true;
+		}
+
+		int price = 0;
+		try {
+			//金額。
+			price = Integer.parseInt(request.getParameter("price"));
+		} catch (NumberFormatException e) {
+			errMsgs.add("金額には数値を入力してください。");
+
+			request.setAttribute("errMsgs", errMsgs);
+			//メインページを返す
+			return "MainPage.jsp";
+		}
+
+		if (hasErrs) {
+			request.setAttribute("errMsgs", errMsgs);
+			//メインページを返す
+			return "MainPage.jsp";
+		}
+
+		//収入か支出か。収入->true、支出->false。
+		String isIncome = request.getParameter("isIncome");
 
 		//フォームから入力されたデータをセット
 		InputData inputData = new InputData();
@@ -60,21 +92,22 @@ public class RegistExchangeCommand implements Command {
 		try {
 			con = ConnectionOperator.getConnection();
 			con.setAutoCommit(false);
+
+			//収支情報をDBに登録するためのDaoクラス。
 			RegistExchangeDao registExchangeDao = new RegistExchangeDao(con);
 
 			//入力された収支情報を登録
 			registExchangeDao.insertExchange(inputData);
 
-			//memberテーブルのbalanceを更新
+			//membersテーブルのbalanceを更新
 			registExchangeDao.updateBalnce(loginUserId, price,
 					inputData.getIsIncome());
 
-			//会員の収支の履歴
-			//入力データ反映後のデータを取得
+			//入力データ反映後の収支の情報を取得
 			LogDao logDao = new LogDao(con);
 			List<ExchangeLog> log = logDao
 					.selectLogByMember(loginUserId);
-			request.setAttribute("log", log);
+			session.setAttribute("log", log);
 
 			//入力データ後の残高情報を取得
 			MemberDao memberDao = new MemberDao(con);
