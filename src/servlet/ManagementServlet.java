@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import command.CheckMemberFormCommand;
 import command.CheckUserCommand;
+import command.RegistExchangeCommand;
 import command.RegistMemberCommand;
 
 /**
@@ -47,6 +48,7 @@ public class ManagementServlet extends HttpServlet {
 			HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		String commandName = request.getParameter("command");
+
 		String nextPage = "ErrorPage.jsp";
 		switch (commandName) {
 		case "CheckUser":
@@ -60,6 +62,9 @@ public class ManagementServlet extends HttpServlet {
 			break;
 		case "RegistMember":
 			nextPage = new RegistMemberCommand().execute(request);
+			break;
+		case "RegistExchange":
+			nextPage = new RegistExchangeCommand().execute(request);
 			break;
 		default:
 			request.setAttribute("errMsg", "指定されたページは存在しません");
