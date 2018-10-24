@@ -14,6 +14,12 @@ Copyright (c) 2018. All Rights Reserved.
 <title>メインページ</title>
 </head>
 <body>
+<div align="right">
+    <a href="ManagementServlet?command=Logout">
+        ログアウト
+    </a>
+</div>
+
 残金総額:${member.balance }<br>
 
 <form method="post">

@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import command.CheckMemberFormCommand;
 import command.CheckUserCommand;
+import command.LogoutCommand;
 import command.RegistExchangeCommand;
 import command.RegistMemberCommand;
 
@@ -66,7 +67,7 @@ public class ManagementServlet extends HttpServlet {
 			break;
 		case "MemberRegistForm":
 			//新規会員登録フォーム。
-			nextPage = "MemberRegistForm.jsp";
+			nextPage = "MembeerRegistForm.jsp";
 			break;
 		case "MemberRegistConfirm":
 			//会員情報の入力チェック。
@@ -80,11 +81,16 @@ public class ManagementServlet extends HttpServlet {
 			//収支情報をDBに登録。
 			nextPage = new RegistExchangeCommand().execute(request);
 			break;
+		case "Logout":
+			//ログアウト
+			nextPage = new LogoutCommand().execute(request);
+			break;
 		default:
 			//エラーページ。
 			request.setAttribute("errMsg", "指定されたページは存在しません");
 			nextPage = "ErrorPage.jsp";
 		}
+
 		RequestDispatcher rd = request.getRequestDispatcher(nextPage);
 		rd.forward(request, response);
 	}
