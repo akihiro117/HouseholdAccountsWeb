@@ -23,10 +23,10 @@ Copyright (c) 2018. All Rights Reserved.
 	<table width="30%" align="left">
 	    <tr>
 	        <th>
-	            内容
+	            内容*
 	        </th>
 	        <th>
-	            金額
+	            金額*
 	        </th>
 	        <th align="left">
 	            収入/支出
