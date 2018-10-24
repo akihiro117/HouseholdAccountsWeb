@@ -11,6 +11,7 @@ Copyright (c) 2018. All Rights Reserved.
 <html>
 <head>
 <meta charset="UTF-8">
+<link rel="stylesheet" type="text/css" href="css/common.css" />
 <title>会員登録確認</title>
 </head>
 <body>

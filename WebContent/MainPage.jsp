@@ -1,5 +1,5 @@
 <!--
-LoginForm.jsp
+MainPage.jsp
 Created by Akihiro Yamada on 2018/08/22.
 Copyright (c) 2018. All Rights Reserved.
  -->
@@ -11,6 +11,9 @@ Copyright (c) 2018. All Rights Reserved.
 <html>
 <head>
 <meta charset="UTF-8">
+
+<link rel="stylesheet" type="text/css" href="css/common.css" />
+
 <title>メインページ</title>
 </head>
 <body>
@@ -60,12 +63,17 @@ Copyright (c) 2018. All Rights Reserved.
 	       <td>
 	       </td>
 	       <td>
+	       </td>
+	       <td align="right">
 	           <input type="hidden" name="command" value="RegistExchange">
                <input type="submit" value="収支登録"><br>
 	       </td>
 	    </tr>
 	</table>
 </form>
+
+<br>
+<br>
 
 <table border="1" width="80%" align="center">
 <tr>

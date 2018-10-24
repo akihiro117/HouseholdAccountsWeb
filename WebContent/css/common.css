@@ -1,0 +1,13 @@
+@charset "UTF-8";
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	color: red;
+}
+
+a:focus {
+	color: red;
+}

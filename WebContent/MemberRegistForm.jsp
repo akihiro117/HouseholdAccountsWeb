@@ -11,6 +11,7 @@ Copyright (c) 2018. All Rights Reserved.
 <html>
 <head>
 <meta charset="UTF-8">
+<link rel="stylesheet" type="text/css" href="css/common.css" />
 <title>新規登録</title>
 </head>
 <body>
